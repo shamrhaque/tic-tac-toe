@@ -1,3 +1,4 @@
+import './App.css'; 
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -7,7 +8,6 @@ function Square({ value, onSquareClick }) {
     </button>
   );
 }
-
 function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
@@ -26,6 +26,8 @@ function Board({ xIsNext, squares, onPlay }) {
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (squares.every(square => square !== null)) {
+    status = 'Draw!';
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -113,3 +115,6 @@ function calculateWinner(squares) {
   }
   return null;
 }
+
+
+
